@@ -11,6 +11,11 @@ class window.AppView extends Backbone.View
 
   initialize: ->
     @render()
+    @model.on "playerbust", =>
+      # console.log('something')
+      temp = _.template '<div>You lost</div>'
+      @$el.html temp()
+      setTimeout @render.bind(@), 2000
 
   render: ->
     @$el.children().detach()

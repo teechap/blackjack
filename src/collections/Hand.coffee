@@ -2,9 +2,17 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-
+    # listen to event in scores
+      # if scores has bust value
+      #   change bust to true
   hit: ->
     @add(@deck.pop())
+    #if bust is true, emit bust event (in our view, flash game over)
+    # reset in app model?
+    #
+
+  stand: ->
+    #do something with scores
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
@@ -20,4 +28,4 @@ class window.Hand extends Backbone.Collection
     # when there is an ace, it offers you two scores - the original score, and score + 10.
     [@minScore(), @minScore() + 10 * @hasAce()]
 
-
+  bust: false
